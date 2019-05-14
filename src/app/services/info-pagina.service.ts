@@ -8,7 +8,7 @@ import { InfoEquipo } from '../interfaces/equipo.interfaces';
 })
 export class InfoPaginaService {
 
-  info: InfoPagina;
+  info: InfoPagina = {};
   equipo: InfoEquipo;
   dataCargada = false;
 
@@ -27,8 +27,9 @@ export class InfoPaginaService {
   }
 
   private cargarEquipo() {
-    this.http.get('https://angular-2-html.firebaseio.com/.json')
-        .subscribe( (respuestaEquipo: InfoEquipo) => {
+    // Llámamos al archivo JSON base de datos Firebase
+    this.http.get('https://angular-2-html.firebaseio.com/equipo.json')
+        .subscribe( (respuestaEquipo: InfoEquipo ) => {
           this.equipo = respuestaEquipo;
           console.log( respuestaEquipo );
         });
